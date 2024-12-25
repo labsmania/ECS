@@ -1,0 +1,25 @@
+ Step 1
+ Launch both VMs and run the ifconfig command to get IPs of both devices.
+
+ Step 2
+ Ping VM1 and VM2fromeachother using ping <IP> command from both VMsto confirm connectivity between
+ both VMs.
+
+ Step 3
+ Install SSH and Python on both terminals using the following commands:
+ sudo apt update
+ sudo apt install openssh-client
+ sudo apt install python3 or sudo apt-get install python3
+
+ Step 4
+ Start python server on Metasploitable VM (victim)
+ python-m SimpleHTTPServer 8080
+
+Step 5
+ Use SSH to connect to victim VM from Kali VM (attacker)
+ ssh -L 9090:localhost:8080 msfadmin@<Metasploitable_IP>
+ If this does not work use the following command
+ ssh -o HostkeyAlgorithms=+ssh-rsa -L 9090:localhost:8080 msfadmin@<Metasploitable_IP>
+
+ Step 6
+ In Kali VM, Open the browser and search http://localhost:9090. You can see the content of Metasploitable VM
